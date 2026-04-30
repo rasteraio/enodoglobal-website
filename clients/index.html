@@ -201,6 +201,17 @@
       line-height: 1.7;
       font-weight: 300;
     }
+    .hero-pullquote {
+      font-size: clamp(15px, 1.7vw, 18px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--color-accent-light);
+      max-width: 640px;
+      margin-bottom: 36px;
+      padding-left: 18px;
+      border-left: 2px solid var(--color-accent-blue);
+      line-height: 1.55;
+    }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
     .btn-primary {
       display: inline-flex;
@@ -286,10 +297,89 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-top: 4px;
+      line-height: 1.45;
+    }
+    .stat-sublabel {
+      display: inline-block;
+      margin-top: 2px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--color-accent-light);
+      text-transform: none;
     }
 
     /* ── SECTIONS COMMON ── */
     section { padding: 100px 0; }
+
+    /* ── INSTABILITY SEQUENCE ── */
+    #sequence {
+      background: var(--color-bg-primary);
+      border-bottom: 1px solid rgba(74,122,155,0.12);
+    }
+    .sequence-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      align-items: stretch;
+      margin-top: 56px;
+    }
+    .sequence-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 28px 22px;
+      background: var(--color-bg-card);
+      border: 1px solid rgba(74,122,155,0.18);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+    }
+    .sequence-stage:hover {
+      border-color: var(--color-accent-blue);
+      transform: translateY(-3px);
+      background: rgba(74,122,155,0.08);
+    }
+    .sequence-stage:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid var(--color-accent-light);
+      border-right: 2px solid var(--color-accent-light);
+      transform: translateY(-50%) rotate(45deg);
+      z-index: 2;
+    }
+    .sequence-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: 10px;
+    }
+    .sequence-stage h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .sequence-footnote {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .sequence-footnote strong {
+      color: var(--color-accent-light);
+      font-weight: 700;
+    }
 
     /* ── HOW IT WORKS ── */
     #about {
@@ -425,17 +515,24 @@
       line-height: 1.7;
       flex: 1;
     }
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--color-accent-blue);
+    .card-proof {
       margin-top: 20px;
-      transition: gap var(--transition), color var(--transition);
+      padding-top: 20px;
+      border-top: 1px solid rgba(74,122,155,0.18);
+      font-size: 14px;
+      color: var(--color-accent-light);
+      line-height: 1.65;
     }
-    .card-link:hover { gap: 8px; color: var(--color-accent-light); }
+    .card-proof::before {
+      content: 'Proof Point';
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: 6px;
+    }
 
     /* ── INDUSTRIES ── */
     #industries {
@@ -443,16 +540,16 @@
     }
     .industries-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
       margin-top: 56px;
     }
     .industry-item {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 28px 16px;
+      align-items: flex-start;
+      text-align: left;
+      padding: 28px 24px;
       background: var(--color-bg-card);
       border-radius: var(--radius-md);
       border: 1px solid rgba(74,122,155,0.12);
@@ -466,44 +563,28 @@
     }
     .industry-icon {
       color: var(--color-accent-blue);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       transition: color var(--transition);
     }
     .industry-item:hover .industry-icon { color: var(--color-accent-light); }
-    .industry-icon svg { width: 32px; height: 32px; }
+    .industry-icon svg { width: 28px; height: 28px; }
     .industry-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .industry-desc {
+      font-size: 13px;
       color: var(--color-text-muted);
+      line-height: 1.6;
     }
 
     /* ── WHY ENODO ── */
     #about-why {
       background: var(--color-bg-secondary);
-    }
-    .why-quote {
-      text-align: center;
-      font-size: clamp(20px, 3vw, 28px);
-      font-style: italic;
-      color: var(--color-accent-light);
-      font-weight: 300;
-      line-height: 1.5;
-      max-width: 760px;
-      margin: 0 auto 72px;
-      position: relative;
-      padding: 0 40px;
-    }
-    .why-quote::before {
-      content: '\201C';
-      font-size: 100px;
-      color: rgba(74,122,155,0.2);
-      position: absolute;
-      top: -30px;
-      left: 0;
-      line-height: 1;
-      font-style: normal;
     }
     .why-cols {
       display: grid;
@@ -554,16 +635,16 @@
     /* ── CTA SECTION ── */
     #connect {
       background: var(--color-bg-primary);
-      text-align: center;
       padding: 120px 0;
     }
     .cta-band {
       background: linear-gradient(135deg, #0f2236 0%, #162d44 50%, #0f2236 100%);
       border: 1px solid rgba(74,122,155,0.25);
       border-radius: var(--radius-lg);
-      padding: 80px 48px;
+      padding: 64px 48px;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
     .cta-band::before {
       content: '';
@@ -599,6 +680,111 @@
       max-width: 540px;
       margin: 0 auto 40px;
       line-height: 1.7;
+    }
+
+    /* ── CONTACT FORM ── */
+    .contact-form {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-field { display: flex; flex-direction: column; margin-bottom: 16px; }
+    .form-field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-blue);
+      margin-bottom: 8px;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--color-text-primary);
+      background: rgba(13,27,42,0.6);
+      border: 1px solid rgba(74,122,155,0.25);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: border-color var(--transition), background var(--transition);
+      width: 100%;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--color-accent-blue);
+      background: rgba(13,27,42,0.85);
+    }
+    .form-field textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+    .form-field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%238aabbd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M4 6l4 4 4-4'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 14px;
+      padding-right: 38px;
+    }
+    .form-field select option {
+      background: var(--color-bg-card);
+      color: var(--color-text-primary);
+    }
+    .form-submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .form-submit-row button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-cta);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 24px rgba(74,122,155,0.35);
+    }
+    .form-submit-row button:hover {
+      background: var(--color-cta-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(74,122,155,0.45);
+    }
+    .form-secondary-contact {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+    .form-secondary-contact a {
+      color: var(--color-accent-light);
+      transition: color var(--transition);
+    }
+    .form-secondary-contact a:hover { color: var(--color-text-primary); }
+    .form-status {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--color-accent-light);
+      min-height: 18px;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; gap: 0; margin-bottom: 0; }
+      .form-submit-row { justify-content: flex-start; }
     }
 
     /* ── FOOTER ── */
@@ -646,6 +832,34 @@
       transition: color var(--transition);
     }
     .footer-contact a:hover { color: var(--color-accent-light); }
+    .footer-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(74,122,155,0.1);
+    }
+    .footer-credential {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(74,122,155,0.08);
+      border: 1px solid rgba(74,122,155,0.2);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--color-accent-light);
+      text-transform: uppercase;
+    }
+    .footer-credential svg {
+      width: 13px;
+      height: 13px;
+      color: var(--color-accent-blue);
+      flex-shrink: 0;
+    }
     .footer-bottom {
       border-top: 1px solid rgba(74,122,155,0.1);
       padding: 24px 0;
@@ -656,9 +870,14 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .industries-grid { grid-template-columns: repeat(3, 1fr); }
+      .industries-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 1024px) {
+      .sequence-flow { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .sequence-stage:not(:last-child)::after { display: none; }
     }
 
     @media (max-width: 768px) {
@@ -671,6 +890,7 @@
       .stat-item { border-top: 1px solid rgba(74,122,155,0.1); }
       .steps-row { grid-template-columns: 1fr; gap: 40px; }
       .steps-connector { display: none; }
+      .sequence-flow { grid-template-columns: 1fr; gap: 16px; }
       .cards-grid { grid-template-columns: 1fr; }
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
       .why-cols { grid-template-columns: 1fr; gap: 40px; }
@@ -724,17 +944,20 @@
           Human Behavior is the <span>Variable Traditional Risk Analysis</span> Gets Wrong.
         </h1>
         <p class="hero-sub fade-up" style="transition-delay: 0.2s">
-          ENODO Global delivers real-time Human Behavioral Intelligence that reveals emerging risk before it becomes financial loss, reputational damage, or operational delay.
+          ENODO detects the behavioral sequence that precedes geopolitical instability, market dislocation, and institutional collapse — giving sovereign wealth funds, financial institutions, and family offices 6 to 30 months of advance intelligence before conventional risk models register anything at all.
+        </p>
+        <p class="hero-pullquote fade-up" style="transition-delay: 0.25s">
+          "We don't just analyze human behavior. We use it to shape what happens next."
         </p>
         <div class="hero-actions fade-up" style="transition-delay: 0.3s">
-          <a href="#platform" class="btn-primary">
-            Discover the Platform
+          <a href="#connect" class="btn-primary">
+            Request an Intelligence Briefing
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 8h10M9 4l4 4-4 4"/>
             </svg>
           </a>
-          <a href="#about" class="btn-ghost">
-            Learn About ENODO →
+          <a href="#platform" class="btn-ghost">
+            Discover the Platform →
           </a>
         </div>
         <div class="hero-badge fade-up" style="transition-delay: 0.4s">
@@ -754,24 +977,56 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-item fade-up">
-          <div class="stat-top">IaaS <em>Platform</em></div>
-          <div class="stat-label">AI-Powered</div>
+          <div class="stat-top"><em>79%</em></div>
+          <div class="stat-label">Sentiment Accuracy<br/><span class="stat-sublabel">vs. IBM AlchemyAPI 49%</span></div>
         </div>
         <div class="stat-item fade-up" style="transition-delay:0.1s">
-          <div class="stat-top">Real-<em>Time</em></div>
-          <div class="stat-label">Intelligence Delivery</div>
+          <div class="stat-top"><em>32+</em></div>
+          <div class="stat-label">Countries Covered</div>
         </div>
         <div class="stat-item fade-up" style="transition-delay:0.2s">
-          <div class="stat-top"><em>6</em> Industries</div>
-          <div class="stat-label">Served Globally</div>
+          <div class="stat-top"><em>6&ndash;30</em> Months</div>
+          <div class="stat-label">Earlier Than Conventional Detection</div>
         </div>
         <div class="stat-item fade-up" style="transition-delay:0.3s">
-          <div class="stat-top"><em>Proprietary</em></div>
-          <div class="stat-label">Methodology</div>
+          <div class="stat-top"><em>NGA</em> Validated</div>
+          <div class="stat-label">US Government Assessed</div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ── INSTABILITY SEQUENCE ── -->
+  <section id="sequence">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label">Core Framework</span>
+        <h2>The Instability Sequence</h2>
+        <p>ENODO identifies instability before it becomes visible — by tracking the behavioral stages that precede every crisis.</p>
+      </div>
+      <div class="sequence-flow">
+        <div class="sequence-stage fade-up">
+          <div class="sequence-num">Stage 01</div>
+          <h3>Grievance Formation</h3>
+        </div>
+        <div class="sequence-stage fade-up" style="transition-delay:0.1s">
+          <div class="sequence-num">Stage 02</div>
+          <h3>Identity Dynamics</h3>
+        </div>
+        <div class="sequence-stage fade-up" style="transition-delay:0.2s">
+          <div class="sequence-num">Stage 03</div>
+          <h3>Legitimacy Erosion</h3>
+        </div>
+        <div class="sequence-stage fade-up" style="transition-delay:0.3s">
+          <div class="sequence-num">Stage 04</div>
+          <h3>Conflict / Crisis</h3>
+        </div>
+      </div>
+      <p class="sequence-footnote fade-up">
+        Conventional risk models register <strong>Stage 4</strong>. ENODO detects <strong>Stage 1</strong>.
+      </p>
+    </div>
+  </section>
 
   <!-- ── HOW IT WORKS ── -->
   <section id="about">
@@ -785,18 +1040,18 @@
         <div class="steps-connector"></div>
         <div class="step-item fade-up">
           <div class="step-number">01</div>
-          <div class="step-title">Collect</div>
-          <p class="step-desc">AI aggregates behavioral signals across social, news, and open-source data to build a comprehensive picture of human activity at scale.</p>
+          <div class="step-title">Detect</div>
+          <p class="step-desc">AI aggregates behavioral signals across 20+ social platforms, news feeds, and open-source data in 78+ languages — identifying the earliest measurable precursors to instability.</p>
         </div>
         <div class="step-item fade-up" style="transition-delay:0.15s">
           <div class="step-number">02</div>
           <div class="step-title">Interpret</div>
-          <p class="step-desc">ENODO's proprietary ontology filters data through a cultural and behavioral lens, revealing the intent and meaning behind the signals.</p>
+          <p class="step-desc">ENODO's proprietary Ontology Filter structures signals through a cultural and behavioral lens — revealing not just what populations are doing, but why, and what they will do next.</p>
         </div>
         <div class="step-item fade-up" style="transition-delay:0.3s">
           <div class="step-number">03</div>
-          <div class="step-title">Act</div>
-          <p class="step-desc">Deliver real-time intelligence that enables organizations to shape and influence outcomes before risk escalates into crisis.</p>
+          <div class="step-title">Position</div>
+          <p class="step-desc">Real-time intelligence delivered as executive reports, emergency alerts, and narrative strategies — enabling organizations to act before risk escalates and before markets reprice.</p>
         </div>
       </div>
     </div>
@@ -808,7 +1063,7 @@
       <div class="platform-intro fade-up">
         <span class="section-label">Intelligence-as-a-Service</span>
         <h2 class="section-header" style="margin-bottom:0">
-          <span style="font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--color-text-primary);letter-spacing:-0.02em;">One platform. Four interconnected capabilities.</span>
+          <span style="font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--color-text-primary);letter-spacing:-0.02em;">One Platform. Four Interconnected Capabilities.</span>
         </h2>
         <p>The IaaS Platform delivers AI-generated, real-time behavioral intelligence through four tightly integrated modules.</p>
       </div>
@@ -823,7 +1078,7 @@
           </div>
           <h3>IaaS Platform</h3>
           <p>Fully automated, AI-driven real-time behavioral intelligence. The IaaS Platform continuously monitors, processes, and delivers actionable insights without manual intervention.</p>
-          <a href="#connect" class="card-link">Details →</a>
+          <p class="card-proof">Deployed across 32+ countries. Delivers consulting-grade intelligence at machine speed, replacing months of manual analysis with continuous predictive insight.</p>
         </div>
 
         <!-- Card 2 -->
@@ -835,7 +1090,7 @@
           </div>
           <h3>Ontology Filter</h3>
           <p>Interprets data through a cultural lens to reveal behavioral context that generic AI tools miss. ENODO's proprietary ontology understands what behavior means — not just what it is.</p>
-          <a href="#connect" class="card-link">Details →</a>
+          <p class="card-proof">Supports 78+ languages including dialect, slang, and social media semantics. Outperformed IBM AlchemyAPI by 30 percentage points in independent NGA assessment.</p>
         </div>
 
         <!-- Card 3 -->
@@ -847,7 +1102,7 @@
           </div>
           <h3>Stability Index</h3>
           <p>A continuous measure of population-level stability with early warning signals. Detect the precursors to instability before they surface in traditional data streams.</p>
-          <a href="#connect" class="card-link">Details →</a>
+          <p class="card-proof">Continuously tracks behavioral intensity, narrative momentum, and sentiment dynamics — providing early warning 6 to 18 months before legitimacy erosion becomes visible in political risk indices.</p>
         </div>
 
         <!-- Card 4 -->
@@ -857,9 +1112,9 @@
               <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
             </svg>
           </div>
-          <h3>Narrative Intelligence</h3>
+          <h3>Narrative Optimizer</h3>
           <p>Design, test, and deploy narrative interventions for target groups. Understand how messaging lands within a cultural context and shape the information environment proactively.</p>
-          <a href="#connect" class="card-link">Details →</a>
+          <p class="card-proof">Applied on behalf of sovereign capital programs to design and deploy four-phase narrative protocols across psychographic clusters.</p>
         </div>
 
       </div>
@@ -879,55 +1134,61 @@
         <div class="industry-item fade-up">
           <div class="industry-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
             </svg>
           </div>
-          <div class="industry-label">Security</div>
+          <div class="industry-label">Sovereign Wealth Funds</div>
+          <p class="industry-desc">Pre-positioning intelligence on cross-border allocation risk, regime durability, and political legitimacy in target markets — months before consensus political risk indices reprice exposure.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.07s">
           <div class="industry-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
             </svg>
           </div>
-          <div class="industry-label">Geopolitical Risk</div>
+          <div class="industry-label">Global Financial Institutions</div>
+          <p class="industry-desc">Behavioral early-warning intelligence on emerging-market dislocation, sovereign credit deterioration, and counterparty risk in jurisdictions where conventional models lag.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.14s">
           <div class="industry-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              <path d="M3 21h18M5 21V8l7-5 7 5v13M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h.01M15 17h.01"/>
             </svg>
           </div>
-          <div class="industry-label">Finance</div>
+          <div class="industry-label">Family Offices</div>
+          <p class="industry-desc">Discreet, principal-level briefings on jurisdictional stability, succession dynamics, and concentrated-position behavioral risk across multi-generational portfolios.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.21s">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="industry-label">Government &amp; Defense</div>
+          <p class="industry-desc">Mission-grade behavioral intelligence supporting national security, foreign policy, and stability operations. Validated through NGA Discovery Report and active State Department engagements.</p>
+        </div>
+
+        <div class="industry-item fade-up" style="transition-delay:0.28s">
+          <div class="industry-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="industry-label">Geopolitical Risk</div>
+          <p class="industry-desc">Continuous monitoring of grievance formation, identity dynamics, and legitimacy erosion across 32+ countries — surfacing instability precursors before they appear in conventional risk indices.</p>
+        </div>
+
+        <div class="industry-item fade-up" style="transition-delay:0.35s">
           <div class="industry-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </div>
           <div class="industry-label">Insurance</div>
-        </div>
-
-        <div class="industry-item fade-up" style="transition-delay:0.28s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-            </svg>
-          </div>
-          <div class="industry-label">Marketing Communications</div>
-        </div>
-
-        <div class="industry-item fade-up" style="transition-delay:0.35s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <div class="industry-label">Political Campaigns</div>
+          <p class="industry-desc">Behavioral signal inputs for political-violence, terrorism, and political-risk underwriting — quantifying instability exposure before it materializes as claims.</p>
         </div>
 
       </div>
@@ -939,10 +1200,8 @@
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-label">Why ENODO Global</span>
+        <h2>Behavioral Depth, Validated at the Highest Level</h2>
       </div>
-      <blockquote class="why-quote fade-up">
-        We don't just analyze human behavior. We use it to shape what happens next.
-      </blockquote>
       <div class="why-cols">
         <div class="why-text fade-up">
           <h3>A Foundation Built on Behavioral Depth</h3>
@@ -959,7 +1218,7 @@
             </div>
             <div class="why-bullet-text">
               <h4>Beyond Traditional Risk Analysis</h4>
-              <p>ENODO's proprietary approach identifies what conventional methodologies miss — the behavioral precursors hidden in cultural and human signals.</p>
+              <p>ENODO's proprietary approach identifies what conventional methodologies miss — the behavioral precursors hidden in cultural and human signals. The Instability Sequence framework — <em>Grievance Formation → Identity Dynamics → Legitimacy Erosion → Conflict/Crisis</em> — surfaces the earliest measurable stages of instability, well before they appear in price action or political risk indices.</p>
             </div>
           </div>
           <div class="why-bullet">
@@ -981,7 +1240,7 @@
             </div>
             <div class="why-bullet-text">
               <h4>Proven Across Critical Environments</h4>
-              <p>From security operations to financial risk and geopolitical forecasting, ENODO delivers intelligence where the stakes are highest.</p>
+              <p>From security operations to financial risk and geopolitical forecasting, ENODO delivers intelligence where the stakes are highest. Named engagements include: QIA venture capital program, Mizuho Financial Group India market assessment, Federal Reserve interest rate projection, C3.ai equity intelligence, NGA Discovery Report.</p>
             </div>
           </div>
         </div>
@@ -994,14 +1253,53 @@
     <div class="container">
       <div class="cta-band fade-up">
         <span class="section-label">Get Started</span>
-        <h2>Ready to See Beyond<br/>Traditional Risk Analysis?</h2>
-        <p>Connect with ENODO Global and discover what human behavioral intelligence can do for your organization.</p>
-        <a href="mailto:jim@enodoglobal.com" class="btn-primary" style="margin: 0 auto; width: fit-content;">
-          Connect With Us
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
-          </svg>
-        </a>
+        <h2>Request an Intelligence Briefing</h2>
+        <p>Tell us about your organization and area of focus. ENODO will respond with a tailored briefing on what behavioral intelligence can do for your portfolio, mission, or jurisdiction.</p>
+        <form id="briefing-form" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Full Name</label>
+              <input id="cf-name" name="fullName" type="text" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="cf-org">Organization</label>
+              <input id="cf-org" name="organization" type="text" autocomplete="organization" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-country">Country</label>
+              <input id="cf-country" name="country" type="text" autocomplete="country-name" required />
+            </div>
+            <div class="form-field">
+              <label for="cf-interest">Area of Interest</label>
+              <select id="cf-interest" name="areaOfInterest" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Sovereign Wealth Fund Intelligence">Sovereign Wealth Fund Intelligence</option>
+                <option value="Financial Institution Risk">Financial Institution Risk</option>
+                <option value="Family Office Advisory">Family Office Advisory</option>
+                <option value="Government &amp; Defense">Government &amp; Defense</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <div class="form-submit-row">
+            <button type="submit">
+              Request an Intelligence Briefing
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8h10M9 4l4 4-4 4"/>
+              </svg>
+            </button>
+            <div class="form-secondary-contact">
+              Or email <a href="mailto:intelligence@enodoglobal.com">intelligence@enodoglobal.com</a>
+            </div>
+          </div>
+          <div id="briefing-form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
   </section>
@@ -1029,15 +1327,35 @@
         <div class="footer-contact">
           <h4>Contact</h4>
           <p>Fairfax, VA 22032</p>
-          <a href="mailto:jim@enodoglobal.com">jim@enodoglobal.com</a>
+          <a href="mailto:intelligence@enodoglobal.com">intelligence@enodoglobal.com</a>
           <br/>
           <a href="tel:+15712180956">(571) 218-0956</a>
         </div>
       </div>
+      <div class="footer-credentials">
+        <span class="footer-credential">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+          GSA IT Schedule 70 · i3 Partner
+        </span>
+        <span class="footer-credential">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          SDVOSB Certified
+        </span>
+        <span class="footer-credential">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          NGA Discovery Report (Nov 2019) · Government Validated
+        </span>
+      </div>
     </div>
     <div class="footer-bottom">
       <div class="container">
-        © 2025 ENODO Global, Inc. All rights reserved.
+        © 2026 ENODO Global, Inc. All rights reserved.
       </div>
     </div>
   </footer>
@@ -1057,6 +1375,33 @@
         mobileMenu.classList.remove('open');
       });
     });
+
+    // Briefing form — mailto fallback (replace with backend POST when available)
+    const briefingForm = document.getElementById('briefing-form');
+    const briefingStatus = document.getElementById('briefing-form-status');
+    if (briefingForm) {
+      briefingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!briefingForm.reportValidity()) return;
+        const data = new FormData(briefingForm);
+        const lines = [
+          `Full Name: ${data.get('fullName')}`,
+          `Organization: ${data.get('organization')}`,
+          `Country: ${data.get('country')}`,
+          `Area of Interest: ${data.get('areaOfInterest')}`,
+          '',
+          'Message:',
+          data.get('message')
+        ];
+        const subject = `Intelligence Briefing Request — ${data.get('organization')}`;
+        const body = lines.join('\n');
+        window.location.href =
+          'mailto:intelligence@enodoglobal.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(body);
+        briefingStatus.textContent = 'Opening your email client to send the briefing request…';
+      });
+    }
 
     // IntersectionObserver — fade-up
     const observer = new IntersectionObserver((entries) => {
