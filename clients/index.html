@@ -367,22 +367,31 @@
       color: var(--color-text-primary);
       letter-spacing: -0.01em;
       line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .sequence-desc {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      text-align: left;
     }
     .sequence-footnote {
       text-align: center;
-      margin-top: 48px;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--color-text-muted);
-      line-height: 1.6;
+      margin: 64px auto 0;
+      max-width: 760px;
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
     }
     .sequence-footnote strong {
       color: var(--color-accent-light);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     /* ── HOW IT WORKS ── */
-    #about {
+    #process {
       background: var(--color-bg-primary);
     }
     .section-header { text-align: center; margin-bottom: 64px; }
@@ -532,6 +541,74 @@
       text-transform: uppercase;
       color: var(--color-accent-blue);
       margin-bottom: 6px;
+    }
+    .card-delivered {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(74,122,155,0.22);
+      font-size: 13px;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+    .card-delivered strong {
+      color: var(--color-accent-light);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--color-bg-primary);
+      border-bottom: 1px solid rgba(74,122,155,0.12);
+    }
+    .about-body {
+      max-width: 840px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+    .about-body p {
+      font-size: 17px;
+      color: var(--color-text-muted);
+      line-height: 1.85;
+    }
+    .about-credentials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ── CREDENTIAL BADGE (shared: about + footer) ── */
+    .credential-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      background: var(--color-bg-secondary);
+      border: 0.5px solid rgba(74,122,155,0.28);
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── WHY ENODO INTRO ── */
+    .why-intro {
+      max-width: 880px;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .why-intro h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .why-intro p {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
     }
 
     /* ── INDUSTRIES ── */
@@ -835,30 +912,10 @@
     .footer-credentials {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 8px;
       justify-content: center;
       padding: 24px 0;
       border-top: 1px solid rgba(74,122,155,0.1);
-    }
-    .footer-credential {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      background: rgba(74,122,155,0.08);
-      border: 1px solid rgba(74,122,155,0.2);
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--color-accent-light);
-      text-transform: uppercase;
-    }
-    .footer-credential svg {
-      width: 13px;
-      height: 13px;
-      color: var(--color-accent-blue);
-      flex-shrink: 0;
     }
     .footer-bottom {
       border-top: 1px solid rgba(74,122,155,0.1);
@@ -1008,18 +1065,22 @@
         <div class="sequence-stage fade-up">
           <div class="sequence-num">Stage 01</div>
           <h3>Grievance Formation</h3>
+          <p class="sequence-desc">Behavioral signals in social language, local media framing, and community discourse begin clustering around economic exclusion, institutional distrust, or identity threat. These signals are detectable 18 to 30 months before any political manifestation and form the earliest measurable precursor in the Instability Sequence.</p>
         </div>
         <div class="sequence-stage fade-up" style="transition-delay:0.1s">
           <div class="sequence-num">Stage 02</div>
           <h3>Identity Dynamics</h3>
+          <p class="sequence-desc">Group identity signals intensify — linguistic markers of in-group cohesion, out-group antagonism, and ideological boundary-drawing accelerate across monitored data streams. This stage marks the transition from diffuse grievance to organized social force.</p>
         </div>
         <div class="sequence-stage fade-up" style="transition-delay:0.2s">
           <div class="sequence-num">Stage 03</div>
           <h3>Legitimacy Erosion</h3>
+          <p class="sequence-desc">Institutional trust signals deteriorate across government, media, financial, and civil structures simultaneously. ENODO tracks legitimacy erosion as a behavioral composite — the stage at which grievance and identity have fused into systemic delegitimization.</p>
         </div>
         <div class="sequence-stage fade-up" style="transition-delay:0.3s">
           <div class="sequence-num">Stage 04</div>
           <h3>Conflict / Crisis</h3>
+          <p class="sequence-desc">Observable conflict, political rupture, or market dislocation becomes measurable by conventional risk models — typically 6 to 30 months after ENODO first detected the sequence. By Stage 4, repositioning windows have closed for most institutional actors.</p>
         </div>
       </div>
       <p class="sequence-footnote fade-up">
@@ -1028,8 +1089,26 @@
     </div>
   </section>
 
-  <!-- ── HOW IT WORKS ── -->
+  <!-- ── ABOUT ── -->
   <section id="about">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label">About ENODO Global</span>
+        <h2>Founded on a Single Premise:<br/>Human Behavior Is Predictable.</h2>
+      </div>
+      <div class="about-body fade-up">
+        <p>ENODO Global was founded to solve the problem that every major risk failure has in common: the humans involved behaved in ways that were visible in the data — but no one was looking at the right signals. ENODO's proprietary methodology, developed over more than a decade and validated through US government assessment, applies behavioral science, cultural linguistics, and AI to the challenge of predicting instability before it becomes loss. Headquartered in Fairfax, Virginia. Active across 32+ countries. Trusted by sovereign funds, global financial institutions, and government agencies.</p>
+      </div>
+      <div class="about-credentials fade-up">
+        <span class="credential-badge">GSA IT Schedule 70 · i3 Partner</span>
+        <span class="credential-badge">SDVOSB Certified</span>
+        <span class="credential-badge">NGA Discovery Report (Nov 2019) · Government Validated</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section id="process">
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-label">The Process</span>
@@ -1076,9 +1155,9 @@
               <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
             </svg>
           </div>
-          <h3>IaaS Platform</h3>
-          <p>Fully automated, AI-driven real-time behavioral intelligence. The IaaS Platform continuously monitors, processes, and delivers actionable insights without manual intervention.</p>
-          <p class="card-proof">Deployed across 32+ countries. Delivers consulting-grade intelligence at machine speed, replacing months of manual analysis with continuous predictive insight.</p>
+          <h3>Continuous Intelligence Engine</h3>
+          <p>The Continuous Intelligence Engine is the operational core of ENODO's IaaS Platform. It automatically aggregates, processes, and delivers behavioral intelligence across 32+ countries — replacing months of manual analysis with a persistent, always-on intelligence feed. Deployed across sovereign, financial, and government environments.</p>
+          <p class="card-delivered"><strong>Delivered as:</strong> Real-time dashboard, executive summary reports, and API data feed.</p>
         </div>
 
         <!-- Card 2 -->
@@ -1091,6 +1170,7 @@
           <h3>Ontology Filter</h3>
           <p>Interprets data through a cultural lens to reveal behavioral context that generic AI tools miss. ENODO's proprietary ontology understands what behavior means — not just what it is.</p>
           <p class="card-proof">Supports 78+ languages including dialect, slang, and social media semantics. Outperformed IBM AlchemyAPI by 30 percentage points in independent NGA assessment.</p>
+          <p class="card-delivered"><strong>Delivered as:</strong> Behavioral context layer integrated into client's existing risk infrastructure or delivered as a standalone annotated intelligence feed.</p>
         </div>
 
         <!-- Card 3 -->
@@ -1103,6 +1183,7 @@
           <h3>Stability Index</h3>
           <p>A continuous measure of population-level stability with early warning signals. Detect the precursors to instability before they surface in traditional data streams.</p>
           <p class="card-proof">Continuously tracks behavioral intensity, narrative momentum, and sentiment dynamics — providing early warning 6 to 18 months before legitimacy erosion becomes visible in political risk indices.</p>
+          <p class="card-delivered"><strong>Delivered as:</strong> Country-level stability scores updated continuously, with threshold alerts triggered when behavioral indicators cross predefined risk parameters.</p>
         </div>
 
         <!-- Card 4 -->
@@ -1112,9 +1193,10 @@
               <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
             </svg>
           </div>
-          <h3>Narrative Optimizer</h3>
-          <p>Design, test, and deploy narrative interventions for target groups. Understand how messaging lands within a cultural context and shape the information environment proactively.</p>
-          <p class="card-proof">Applied on behalf of sovereign capital programs to design and deploy four-phase narrative protocols across psychographic clusters.</p>
+          <h3>Narrative Intelligence</h3>
+          <p>Analyzes how information narratives form, propagate, and shift across target populations — enabling clients to anticipate narrative-driven market and political risk before it reaches consensus. ENODO maps psychographic clusters, tracks narrative momentum, and identifies the inflection points at which dominant narratives shift institutional behavior.</p>
+          <p class="card-proof">Applied across sovereign capital programs and national stability assessments to identify narrative inflection points 4 to 12 months before they drove measurable changes in capital flows or institutional positioning.</p>
+          <p class="card-delivered"><strong>Delivered as:</strong> Audience segmentation analysis, narrative risk assessment, and structured intelligence brief on information dynamics in target jurisdictions.</p>
         </div>
 
       </div>
@@ -1200,7 +1282,11 @@
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-label">Why ENODO Global</span>
-        <h2>Behavioral Depth, Validated at the Highest Level</h2>
+        <h2>The Only Behavioral Intelligence Platform Validated by the US Government.</h2>
+      </div>
+      <div class="why-intro fade-up">
+        <h3>What Human Behavioral Intelligence Actually Means</h3>
+        <p>Conventional risk models track events — elections, defaults, policy changes, credit downgrades. Human Behavioral Intelligence tracks the population-level dynamics that produce those events: how grievances form, how identities harden, how legitimacy erodes. These behavioral precursors are measurable in open-source data streams, scalable across 32+ countries and 78+ languages, and — unlike events — predictable. ENODO's platform is the only validated implementation of this methodology assessed by a US government intelligence agency.</p>
       </div>
       <div class="why-cols">
         <div class="why-text fade-up">
@@ -1279,6 +1365,7 @@
                 <option value="Financial Institution Risk">Financial Institution Risk</option>
                 <option value="Family Office Advisory">Family Office Advisory</option>
                 <option value="Government &amp; Defense">Government &amp; Defense</option>
+                <option value="Geopolitical Risk">Geopolitical Risk</option>
                 <option value="Other">Other</option>
               </select>
             </div>
@@ -1333,24 +1420,9 @@
         </div>
       </div>
       <div class="footer-credentials">
-        <span class="footer-credential">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
-          </svg>
-          GSA IT Schedule 70 · i3 Partner
-        </span>
-        <span class="footer-credential">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          SDVOSB Certified
-        </span>
-        <span class="footer-credential">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          NGA Discovery Report (Nov 2019) · Government Validated
-        </span>
+        <span class="credential-badge">GSA IT Schedule 70 · i3 Partner</span>
+        <span class="credential-badge">SDVOSB Certified</span>
+        <span class="credential-badge">NGA Discovery Report (Nov 2019) · Government Validated</span>
       </div>
     </div>
     <div class="footer-bottom">
