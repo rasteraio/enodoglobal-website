@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENODO Global — Intelligence-as-a-Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:        #FFFFFF;
+    --off-white:    #F4F6F8;
+    --light-bg:     #EEF1F4;
+    --border:       #D0D8E0;
+    --steel-dark:   #2E4A5E;
+    --steel-mid:    #4A7A96;
+    --steel-light:  #7AAEC2;
+    --steel-xl:     #B8D4E2;
+    --accent-bg:    #E0EBF2;
+    --charcoal:     #2B2D2F;
+    --dark-text:    #3A4550;
+    --mid-text:     #5A6E7A;
+    --light-text:   #8A9EAA;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    color: var(--dark-text);
+    background: var(--white);
+    line-height: 1.5;
+  }
+
+  /* ── GRID TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── TOP STRIPE ── */
+  .top-stripe {
+    height: 4px;
+    background: var(--steel-dark);
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ── LAYOUT ── */
+  .page { position: relative; z-index: 1; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── HEADER / NAV ── */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(46,74,94,0.06);
+  }
+
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo-wrap img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .badge {
+    background: var(--steel-dark);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+  }
+
+  .nav-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light-text);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--steel-mid);
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .hero-headline .accent { color: var(--steel-mid); }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--mid-text);
+    border-left: 3px solid var(--steel-mid);
+    padding-left: 16px;
+  }
+
+  .summary-box {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--steel-mid);
+    border-top: 2px solid var(--steel-mid);
+    padding: 24px;
+  }
+
+  .summary-icon {
+    font-size: 18px;
+    color: var(--steel-mid);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .summary-box p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--steel-dark);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+  }
+
+  .summary-box strong { color: var(--charcoal); font-weight: 700; }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    background: var(--steel-mid);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    padding-left: 14px;
+    border-left: 1px solid var(--border);
+    margin-left: 0;
+  }
+
+  /* ── GRID CARDS ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); }
+
+  .card {
+    background: var(--light-bg);
+    padding: 20px 22px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .card:hover { background: var(--accent-bg); }
+
+  .card-icon {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--steel-mid);
+  }
+
+  .card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--steel-dark);
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mid-text);
+  }
+
+  /* left-accent cards */
+  .card-accented { border-left: 3px solid var(--steel-mid); }
+
+  /* ── TIER CARDS ── */
+  .tier-card {
+    background: var(--light-bg);
+    padding: 22px;
+    transition: background 0.2s;
+  }
+  .tier-card:hover { background: #dce8f0; }
+  .tier-card.featured {
+    background: var(--accent-bg);
+    border-top: 3px solid var(--steel-mid);
+  }
+
+  .tier-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light-text);
+    margin-bottom: 6px;
+  }
+
+  .tier-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--steel-dark);
+    margin-bottom: 4px;
+  }
+
+  .tier-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light-text);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tier-features { list-style: none; }
+  .tier-features li {
+    font-size: 13px;
+    color: var(--mid-text);
+    line-height: 1.5;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(208,216,224,0.5);
+    display: flex;
+    gap: 8px;
+  }
+  .tier-features li::before {
+    content: '→';
+    color: var(--steel-mid);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .tier-features li:last-child { border-bottom: none; }
+
+  /* ── TACTIC NUMBER ── */
+  .tactic-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 64px 0 56px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .cta-section.visible { opacity: 1; transform: translateY(0); }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .cta-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--steel-mid);
+    margin-bottom: 12px;
+  }
+
+  .cta-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .cta-headline .accent { color: var(--steel-mid); }
+
+  .cta-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid-text);
+  }
+
+  .taglines {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .tagline-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid-text);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tagline-item:last-child { border-bottom: none; }
+  .tagline-item::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--steel-mid);
+    flex-shrink: 0;
+  }
+
+  .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 16px 12px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--steel-mid); color: var(--white); }
+  .btn-outline {
+    background: var(--white);
+    color: var(--steel-dark);
+    border: 1px solid var(--steel-mid);
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--steel-dark);
+    color: var(--steel-xl);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo img {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+
+  .footer-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--steel-xl);
+    opacity: 0.6;
+  }
+
+  /* ── DIVIDER ── */
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .hero-inner, .cta-inner { grid-template-columns: 1fr; gap: 32px; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .hero-headline { font-size: 36px; }
+    .header-inner { gap: 12px; }
+    .nav-label { display: none; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.5s ease 0.1s both; }
+  .hero-headline { animation: fadeUp 0.5s ease 0.2s both; }
+  .hero-desc     { animation: fadeUp 0.5s ease 0.3s both; }
+  .summary-box   { animation: fadeUp 0.5s ease 0.4s both; }
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<div class="page">
+
+  <!-- ── STICKY HEADER ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <img src="ENODO_Logo_20160825_High-Res_FINAL.jpg" alt="ENODO Global">
+      </div>
+      <div class="badge">Intelligence-as-a-Service</div>
+      <div class="nav-label">Strategic Intelligence · Forensic Analytics</div>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Strategic Intelligence · Forensic Analytics · Predictive Insight</div>
+        <h1 class="hero-headline">Certainty in<br><span class="accent">Volatile</span><br>Environments</h1>
+        <p class="hero-desc">
+          ENODO IaaS transforms high-stakes intelligence into scalable, subscription-based insight.
+          Forensic-grade analysis — authoritative, dense, and technically precise — engineered for
+          operators who cannot afford to be wrong.
+        </p>
+      </div>
+      <div class="summary-box">
+        <span class="summary-icon">◈</span>
+        <p>
+          <strong>Start with Section 3:</strong> Generate three high-quality "Strategic Dossiers"
+          as proof-of-platform. Package as PDFs. Send to niche industry newsletters. Prove ENODO
+          can <strong>predict friction before it hits the news</strong> — revenue follows.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 01: VERTICALS ── -->
+  <section class="section" id="verticals">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">High-Value Verticals — The "Who"</h2>
+      </div>
+      <div class="grid-2">
+        <div class="card card-accented">
+          <span class="card-icon">▣</span>
+          <div class="card-name">Defense &amp; National Security</div>
+          <p class="card-desc">Weaponizer/Optimize + Dossier features. Market to PsYOP units, civilian-military affairs, and strategic communications commands.</p>
+        </div>
+        <div class="card card-accented">
+          <span class="card-icon">⚡</span>
+          <div class="card-name">Energy &amp; Extractives</div>
+          <p class="card-desc">Predict social license-to-operate friction before kinetic disruption. Essential for large-scale projects in emerging markets.</p>
+        </div>
+        <div class="card card-accented">
+          <span class="card-icon">◈</span>
+          <div class="card-name">Hedge Funds &amp; Private Equity</div>
+          <p class="card-desc">Where Street Sentiment diverges from Official Narratives = Alpha. The "Reality Gap" engine for sophisticated investors.</p>
+        </div>
+        <div class="card card-accented">
+          <span class="card-icon">⚖</span>
+          <div class="card-name">Crisis Management &amp; PR Firms</div>
+          <p class="card-desc">Decode the source and emotional valence of hostile information campaigns against corporate clients in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 02: REVENUE MODELS ── -->
+  <section class="section" id="revenue">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Strategic Revenue Models — The "How Much"</h2>
+      </div>
+      <div class="grid-3" style="background: var(--border);">
+        <div class="tier-card">
+          <div class="tier-label">Entry Tier</div>
+          <div class="tier-name">Analyst Access</div>
+          <div class="tier-sub">Dossier Credits Model</div>
+          <ul class="tier-features">
+            <li>Free platform access with Dossier Credits</li>
+            <li>Strategic Assessment Dossier (Model S08)</li>
+            <li>"Strategic Brief" consumes a single credit</li>
+            <li>World Map + basic Sentiment analysis</li>
+          </ul>
+        </div>
+        <div class="tier-card featured">
+          <div class="tier-label">Core Tier</div>
+          <div class="tier-name">Strategist Tier</div>
+          <div class="tier-sub">Tiered IaaS Licensing</div>
+          <ul class="tier-features">
+            <li>Weaponizer/Influence Strategy engine</li>
+            <li>Full Dossier export suite</li>
+            <li>Dedicated API integration (OSINT tools)</li>
+            <li>Unlimited Commander Tier platform access</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-label">Enterprise</div>
+          <div class="tier-name">Managed Intel</div>
+          <div class="tier-sub">Managed Intelligence Services</div>
+          <ul class="tier-features">
+            <li>"ENODO Analysts" interpret forensic output</li>
+            <li>Monthly Global Risk Forecast</li>
+            <li>Sell the outcome — not software</li>
+            <li>White-glove enterprise delivery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 03: FORENSIC TACTICS ── -->
+  <section class="section" id="tactics">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">"Forensic" Marketing Tactics</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="tactic-num">01</div>
+          <div class="card-name">Public Intel Alerts</div>
+          <p class="card-desc">Release "Declassified" Strategic Dossiers on trending global events. Establish ENODO's exact terminology as Thought Leadership.</p>
+        </div>
+        <div class="card">
+          <div class="tactic-num">02</div>
+          <div class="card-name">The Gap Index</div>
+          <p class="card-desc">Publish a public-facing index where "Street" vs "Official" sentiment diverges most. A cited resource for journalists and policymakers.</p>
+        </div>
+        <div class="card">
+          <div class="tactic-num">03</div>
+          <div class="card-name">Closed-Door Simulations</div>
+          <p class="card-desc">Live "Red Teaming" workshops. Show how the Weaponizer generates counter-strategies in real time. Proof by demonstration, not slide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 04: PARTNERSHIPS ── -->
+  <section class="section" id="partners">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Strategic Partnerships &amp; Distribution</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card card-accented">
+          <div class="card-name">Defense Contractors</div>
+          <p class="card-desc">Partner with Booz Allen, Palantir, BAE Systems. Position ENODO as a "Socio-Cultural Membrane" within Government contracts.</p>
+        </div>
+        <div class="card card-accented">
+          <div class="card-name">Risk Consultancies</div>
+          <p class="card-desc">Back-end tool for Control Risks boutiques. Automate regional reporting via the "Social Friction" data layer.</p>
+        </div>
+        <div class="card card-accented">
+          <div class="card-name">Fintech API Integrations</div>
+          <p class="card-desc">"Sentiment Overlay" for Bloomberg/Refinitiv terminals. Social Friction as a live data signal on top of market data.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 05: CTA ── -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <hr class="rule" style="margin-bottom: 48px;">
+      <div class="cta-inner">
+        <div>
+          <div class="cta-eyebrow">Section 05 — The House Voice</div>
+          <h2 class="cta-headline">Predict Friction<br>Before It <span class="accent">Hits the News</span></h2>
+          <p class="cta-body">
+            ENODO's visual identity anchors every touchpoint: clean structure, high-altitude
+            geospatial visualizations, the "Bento Box" UI grid. You are not selling software —
+            you are selling access to intelligence infrastructure most users shouldn't have, but do.
+          </p>
+        </div>
+        <div>
+          <div class="taglines">
+            <div class="tagline-item">Forensic Characterization of the Global Information Environment</div>
+            <div class="tagline-item">Closing the Reality Gap in Strategic Planning</div>
+            <div class="tagline-item">Weaponized Intelligence for Defensive Posture</div>
+          </div>
+          <div class="btn-group">
+            <a href="#" class="btn btn-primary">Request a Dossier Demo</a>
+            <a href="#" class="btn btn-outline">View Intelligence Alerts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-logo">
+      <img src="ENODO_Logo_20160825_High-Res_FINAL.jpg" alt="ENODO Global">
+    </div>
+    <div class="footer-text">© 2026 ENODO Global · Intelligence-as-a-Service</div>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.section, .cta-section').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
