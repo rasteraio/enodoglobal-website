@@ -293,7 +293,9 @@
       display: block;
     }
     .hero-dash-risk {
-      margin: -6px 0 14px;
+      position: relative;
+      padding-top: 22px;
+      margin: -2px 0 14px;
     }
     .hero-dash-risk-bar {
       display: flex;
@@ -324,10 +326,11 @@
     .hero-dash-risk-marker {
       position: absolute;
       left: 42.8%;
-      top: -14px;
+      top: 0;
       transform: translateX(-50%);
       font-size: 10px;
       font-weight: 800;
+      line-height: 1;
       color: #e0b88a;
       letter-spacing: 0;
       text-transform: none;
@@ -337,9 +340,9 @@
       content: '';
       display: block;
       width: 1px;
-      height: 8px;
+      height: 6px;
       background: #e0b88a;
-      margin: 1px auto 0;
+      margin: 4px auto 0;
     }
     .hero-dash-rows {
       display: flex;
@@ -2003,6 +2006,7 @@
               <div class="hero-dash-index-delta">▾ −3.2 / 30D</div>
             </div>
             <div class="hero-dash-risk" aria-hidden="true">
+              <span class="hero-dash-risk-marker">42.8 · Elevated</span>
               <div class="hero-dash-risk-bar">
                 <span class="stable" title="0–30 Stable"></span>
                 <span class="elevated" title="31–60 Elevated"></span>
@@ -2010,7 +2014,6 @@
                 <span class="critical" title="81–100 Critical"></span>
               </div>
               <div class="hero-dash-risk-scale">
-                <span class="hero-dash-risk-marker">42.8 · Elevated</span>
                 <span style="left:15%;">Stable</span>
                 <span style="left:45%;">Elevated</span>
                 <span style="left:70%;">High</span>
