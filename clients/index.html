@@ -3,7 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ENODO Global — Human Behavioral Intelligence</title>
+  <title>ENODO Global | Geopolitical Risk Intelligence &amp; Behavioral Analytics Platform</title>
+  <meta name="description" content="ENODO's IaaS platform delivers real-time behavioral intelligence across 180+ countries — detecting geopolitical instability, political risk, and market dislocation 6 to 30 months before conventional models. NGA validated." />
+  <link rel="canonical" href="https://enodoglobal-website.vercel.app/" />
+  <meta property="og:title" content="ENODO Global | Behavioral Intelligence Platform" />
+  <meta property="og:description" content="Real-time human behavioral intelligence across 180+ countries. Detect instability 6–30 months early. NGA validated." />
+  <meta property="og:image" content="https://enodoglobal-website.vercel.app/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://enodoglobal-website.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ENODO Global | Behavioral Intelligence Platform" />
+  <meta name="twitter:description" content="Real-time human behavioral intelligence across 180+ countries. Detect instability 6–30 months early. NGA validated." />
+  <meta name="twitter:image" content="https://enodoglobal-website.vercel.app/og-image.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ENODO Global",
+    "description": "Human Behavioral Intelligence platform delivering real-time geopolitical and political risk analytics",
+    "url": "https://enodoglobal.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Fairfax",
+      "addressRegion": "VA",
+      "postalCode": "22032",
+      "addressCountry": "US"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "intelligence@enodoglobal.com",
+      "telephone": "+1-571-218-0956"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
@@ -260,6 +292,55 @@
       margin-bottom: 16px;
       display: block;
     }
+    .hero-dash-risk {
+      margin: -6px 0 14px;
+    }
+    .hero-dash-risk-bar {
+      display: flex;
+      height: 6px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .hero-dash-risk-bar span { flex: 1; }
+    .hero-dash-risk-bar .stable   { background: linear-gradient(90deg, #4a8b6d 0%, #6fb18a 100%); }
+    .hero-dash-risk-bar .elevated { background: linear-gradient(90deg, #c9a070 0%, #e0b88a 100%); }
+    .hero-dash-risk-bar .high     { background: linear-gradient(90deg, #c98a4a 0%, #e0a070 100%); }
+    .hero-dash-risk-bar .critical { background: linear-gradient(90deg, #c97070 0%, #e08a8a 100%); }
+    .hero-dash-risk-scale {
+      position: relative;
+      margin-top: 6px;
+      height: 14px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .hero-dash-risk-scale span {
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+    }
+    .hero-dash-risk-marker {
+      position: absolute;
+      left: 42.8%;
+      top: -14px;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: #e0b88a;
+      letter-spacing: 0;
+      text-transform: none;
+      white-space: nowrap;
+    }
+    .hero-dash-risk-marker::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 8px;
+      background: #e0b88a;
+      margin: 1px auto 0;
+    }
     .hero-dash-rows {
       display: flex;
       flex-direction: column;
@@ -267,11 +348,31 @@
     }
     .hero-dash-row {
       display: grid;
-      grid-template-columns: 1fr 70px 50px;
-      gap: 12px;
+      grid-template-columns: 1fr 56px 44px 44px;
+      gap: 10px;
       align-items: center;
       font-size: 12px;
       padding: 6px 0;
+    }
+    .hero-dash-row-delta {
+      font-size: 11px;
+      font-weight: 700;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+    }
+    .hero-dash-row-delta.up { color: #e08a8a; }
+    .hero-dash-row-delta.down { color: #8aabbd; }
+    .hero-dash-updated {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(74,122,155,0.12);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      text-align: right;
     }
     .hero-dash-row-country {
       color: var(--color-text-primary);
@@ -581,7 +682,7 @@
     .sequence-flow {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
+      gap: 40px;
       align-items: stretch;
       margin-top: 56px;
     }
@@ -602,18 +703,30 @@
       transform: translateY(-3px);
       background: rgba(74,122,155,0.08);
     }
+    .sequence-stage:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -36px;
+      width: 24px;
+      height: 4px;
+      background: var(--color-accent-light);
+      transform: translateY(-50%);
+      z-index: 1;
+      box-shadow: 0 0 12px rgba(138,171,189,0.4);
+    }
     .sequence-stage:not(:last-child)::after {
       content: '';
       position: absolute;
       top: 50%;
-      right: -22px;
-      width: 18px;
-      height: 18px;
-      border-top: 3px solid var(--color-accent-blue);
-      border-right: 3px solid var(--color-accent-blue);
+      right: -34px;
+      width: 22px;
+      height: 22px;
+      border-top: 5px solid var(--color-accent-light);
+      border-right: 5px solid var(--color-accent-light);
       transform: translateY(-50%) rotate(45deg);
       z-index: 2;
-      filter: drop-shadow(0 0 6px rgba(74,122,155,0.4));
+      filter: drop-shadow(0 0 10px rgba(138,171,189,0.5));
     }
     .sequence-num {
       font-size: 11px;
@@ -978,6 +1091,18 @@
       background: var(--color-bg-primary);
       border-bottom: 1px solid rgba(74,122,155,0.12);
     }
+    .about-transition {
+      max-width: 840px;
+      margin: 0 auto 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(74,122,155,0.18);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent-light);
+    }
     .about-body {
       max-width: 840px;
       margin: 0 auto 40px;
@@ -987,6 +1112,17 @@
       font-size: 17px;
       color: var(--color-text-muted);
       line-height: 1.85;
+    }
+    .about-body p.about-foundation {
+      margin-top: 36px;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .about-body p.about-foundation strong {
+      color: var(--color-accent-light);
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
     .about-credentials {
       display: flex;
@@ -1853,8 +1989,8 @@
             Actionable &nbsp;·&nbsp; Real-Time &nbsp;·&nbsp; Decisive
           </div>
         </div>
-        <div class="hero-visual fade-up" style="transition-delay: 0.35s" aria-hidden="true">
-          <div class="hero-dashboard">
+        <div class="hero-visual fade-up" style="transition-delay: 0.35s">
+          <div class="hero-dashboard" role="img" aria-label="ENODO Stability Index live dashboard showing global composite behavioral risk score across 180+ countries">
             <div class="hero-dash-head">
               <div class="hero-dash-head-title">ENODO · Stability Index</div>
               <div class="hero-dash-status">Live</div>
@@ -1865,6 +2001,21 @@
                 <div class="hero-dash-index-label">Global Composite</div>
               </div>
               <div class="hero-dash-index-delta">▾ −3.2 / 30D</div>
+            </div>
+            <div class="hero-dash-risk" aria-hidden="true">
+              <div class="hero-dash-risk-bar">
+                <span class="stable" title="0–30 Stable"></span>
+                <span class="elevated" title="31–60 Elevated"></span>
+                <span class="high" title="61–80 High"></span>
+                <span class="critical" title="81–100 Critical"></span>
+              </div>
+              <div class="hero-dash-risk-scale">
+                <span class="hero-dash-risk-marker">42.8 · Elevated</span>
+                <span style="left:15%;">Stable</span>
+                <span style="left:45%;">Elevated</span>
+                <span style="left:70%;">High</span>
+                <span style="left:90%;">Critical</span>
+              </div>
             </div>
             <svg class="hero-dash-spark" viewBox="0 0 360 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -1880,26 +2031,31 @@
             </svg>
             <div class="hero-dash-rows">
               <div class="hero-dash-row">
-                <span class="hero-dash-row-country">Country A · Sahel</span>
+                <span class="hero-dash-row-country">Nigeria · West Africa</span>
                 <span class="hero-dash-row-bar"><span class="hero-dash-row-fill alert" style="width:84%"></span></span>
                 <span class="hero-dash-row-score alert">84.2</span>
+                <span class="hero-dash-row-delta up">▲ +2.1</span>
               </div>
               <div class="hero-dash-row">
-                <span class="hero-dash-row-country">Country B · LATAM</span>
+                <span class="hero-dash-row-country">Colombia · LATAM</span>
                 <span class="hero-dash-row-bar"><span class="hero-dash-row-fill warn" style="width:62%"></span></span>
                 <span class="hero-dash-row-score warn">62.1</span>
+                <span class="hero-dash-row-delta"></span>
               </div>
               <div class="hero-dash-row">
-                <span class="hero-dash-row-country">Country C · MENA</span>
+                <span class="hero-dash-row-country">Egypt · MENA</span>
                 <span class="hero-dash-row-bar"><span class="hero-dash-row-fill warn" style="width:55%"></span></span>
                 <span class="hero-dash-row-score warn">55.4</span>
+                <span class="hero-dash-row-delta"></span>
               </div>
               <div class="hero-dash-row">
-                <span class="hero-dash-row-country">Country D · S. Asia</span>
+                <span class="hero-dash-row-country">Pakistan · S. Asia</span>
                 <span class="hero-dash-row-bar"><span class="hero-dash-row-fill ok" style="width:34%"></span></span>
                 <span class="hero-dash-row-score ok">34.0</span>
+                <span class="hero-dash-row-delta down">▼ −1.4</span>
               </div>
             </div>
+            <div class="hero-dash-updated">Updated: 07 May 2026 · 14:32 UTC</div>
             <div class="hero-dash-foot">
               <span>180+ Countries</span>
               <span>20+ Sources</span>
@@ -2038,7 +2194,7 @@
         <h2 class="section-header" style="margin-bottom:0">
           <span style="font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--color-text-primary);letter-spacing:-0.02em;">One Platform. Three Layers of Behavioral Intelligence.</span>
         </h2>
-        <p>The IaaS platform is structured as three integrated layers — the foundation that interprets human behavior, the measurement that quantifies it, and the influence layer that anticipates how narratives will move populations next.</p>
+        <p>The IaaS platform is structured as three integrated layers — the foundation that interprets human behavior, the measurement that quantifies it, and the intelligence layer that anticipates how narratives will move populations next.</p>
       </div>
 
       <div class="platform-umbrella fade-up">
@@ -2097,10 +2253,10 @@
       </div>
 
       <div class="platform-horizons fade-up">
-        <h3>Structured Forecast Horizons</h3>
+        <h3>Structured Forecast Horizons for Political Risk Analytics</h3>
         <p>Top-line advance warning of 6 to 30 months is delivered through a structured 30 / 90 / 180-day horizon model — calibrated to the operational cadence of risk, capital, and policy decision-makers.</p>
         <div class="horizon-chart-wrap">
-          <svg class="horizon-chart" viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Risk trajectory chart showing tactical, operational, and strategic forecast horizons">
+          <svg class="horizon-chart" viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Structured forecast horizon chart showing 30-day tactical, 90-day operational, and 180-day strategic behavioral risk trajectories">
             <defs>
               <linearGradient id="tac-grad" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stop-color="#6fb1c9" stop-opacity="0.32"/>
@@ -2212,67 +2368,37 @@
     <div class="container">
       <div class="section-header fade-up">
         <span class="section-label">Who It's For</span>
-        <h2>Where Human Behavior Is the Defining Risk Variable</h2>
+        <h2>Where Human Behavior Is the Defining Variable in Geopolitical Risk</h2>
         <p>ENODO is a universal behavioral intelligence operating system. It is deployed across every sector where decision-makers must read populations before reading prices, polls, or claims.</p>
       </div>
       <div class="industries-grid">
 
         <div class="industry-item fade-up">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 17l5-6 4 4 7-9"/><path d="M17 6h4v4"/><circle cx="12" cy="15" r="0.5" fill="currentColor"/>
-            </svg>
-          </div>
           <div class="industry-label">Finance</div>
           <p class="industry-desc">Behavioral early warning on emerging-market dislocation, sovereign credit deterioration, and counterparty risk — months before conventional credit and political risk models reprice exposure.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.07s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/><path d="M9 12l2 2 4-4"/>
-            </svg>
-          </div>
           <div class="industry-label">Government &amp; Defense</div>
           <p class="industry-desc">Mission-grade behavioral intelligence for national security, foreign policy, and stability operations — anchored in HTS-lineage methodology and validated through the NGA Discovery Report.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.14s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="6" cy="8" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="12" cy="16" r="2"/><path d="M7.5 9.5l3 5M16.5 9.5l-3 5M8 8h8"/>
-            </svg>
-          </div>
           <div class="industry-label">Political Campaigns</div>
           <p class="industry-desc">Psychographic mapping, narrative-momentum tracking, and grievance-cluster detection — turning electorate behavior into actionable strategy ahead of conventional polling cycles.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.21s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 12c4-7 14-7 18 0M3 12c4 7 14 7 18 0"/><circle cx="12" cy="12" r="2.5"/><circle cx="6" cy="9" r="0.8" fill="currentColor"/><circle cx="18" cy="15" r="0.8" fill="currentColor"/>
-            </svg>
-          </div>
           <div class="industry-label">Marketing &amp; Communications</div>
           <p class="industry-desc">Audience-segmentation and narrative-risk intelligence for brands, agencies, and corporate affairs teams — anticipating how cultural narratives will shift before they reach consensus.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.28s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 22l4-12 6 4 4-8 6 16"/><circle cx="6" cy="10" r="1.2" fill="currentColor"/><path d="M2 22h20"/>
-            </svg>
-          </div>
           <div class="industry-label">Extractives &amp; Energy</div>
           <p class="industry-desc">Behavioral risk intelligence for resource projects in volatile jurisdictions — surfacing community grievance, legitimacy erosion, and social-license risk before operational disruption.</p>
         </div>
 
         <div class="industry-item fade-up" style="transition-delay:0.35s">
-          <div class="industry-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M12 8v4M12 16h.01"/>
-            </svg>
-          </div>
           <div class="industry-label">Insurance</div>
           <p class="industry-desc">Behavioral signal inputs for political-violence, terrorism, and political-risk underwriting — quantifying instability exposure before it materializes as claims.</p>
         </div>
@@ -2372,7 +2498,7 @@
       </div>
 
       <div class="ai-differentiator fade-up">
-        <h3>Why this can't be replaced by ChatGPT or another LLM</h3>
+        <h3>Why Generic AI Cannot Produce Behavioral Intelligence</h3>
         <p>Standard AI tools and large language models do not solve this problem — they compound it. They are trained on historical data, reflect the biases of their training sets, and cannot interpret the cultural and behavioral context that generates instability. ENODO's Ontology Filter is the layer that makes behavioral intelligence structurally different from AI-generated analysis.</p>
       </div>
     </div>
@@ -2412,13 +2538,14 @@
   <!-- ── ABOUT ── -->
   <section id="about">
     <div class="container">
+      <div class="about-transition fade-up">The Organization Behind the Platform</div>
       <div class="section-header fade-up">
         <span class="section-label">About ENODO Global</span>
         <h2>Founded on a Single Premise:<br/>Human Behavior Is Predictable.</h2>
       </div>
       <div class="about-body fade-up">
         <p>ENODO Global was founded to solve the problem that every major risk failure has in common: the humans involved behaved in ways that were visible in the data — but no one was looking at the right signals. ENODO's proprietary methodology, developed over more than a decade and validated through US government assessment, applies behavioral science, cultural linguistics, and AI to the challenge of predicting instability before it becomes loss. Headquartered in Fairfax, Virginia. Active across 180+ countries. Trusted by sovereign funds, global financial institutions, and government agencies.</p>
-        <p style="margin-top:24px;">The IaaS platform is built on the behavioral intelligence doctrine developed through the US government's $750M Human Terrain System program — battle-tested methodology from over a decade of field-applied intelligence in conflict environments, now commercialized and deployed at scale.</p>
+        <p class="about-foundation"><strong>The Foundation:</strong> The IaaS platform is built on the behavioral intelligence doctrine developed through the US government's $750M Human Terrain System program — battle-tested methodology from over a decade of field-applied intelligence in conflict environments, now commercialized and deployed at scale.</p>
       </div>
       <div class="about-credentials fade-up">
         <span class="credential-badge">GSA IT Schedule 70 · i3 Partner</span>
@@ -2517,7 +2644,7 @@
             <li><a href="#platform">Platform</a></li>
             <li><a href="#industries">Industries</a></li>
             <li><a href="#proof">Proof</a></li>
-            <li><a href="#engage">Contact</a></li>
+            <li><a href="#connect">Contact</a></li>
           </ul>
         </div>
         <div class="footer-contact">
