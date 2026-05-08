@@ -107,16 +107,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 92px;
+      height: 80px;
       gap: 32px;
     }
     .nav-logo-pill {
       display: flex;
       align-items: center;
       flex-shrink: 0;
-      padding: 6px 0;
+      padding: 14px 0;
     }
-    .nav-logo-pill img { width: 148px; height: auto; display: block; }
+    .nav-logo-pill img { width: 110px; height: auto; display: block; }
     .nav-links {
       display: flex;
       gap: 36px;
@@ -182,7 +182,7 @@
     /* ── HERO ── */
     #home {
       position: relative;
-      min-height: calc(100vh - 92px);
+      min-height: calc(100vh - 80px);
       padding: 56px 0;
       display: flex;
       align-items: center;
@@ -1916,8 +1916,9 @@
 
     @media (max-width: 768px) {
       section { padding: 72px 0; }
-      .nav-inner { height: 80px; gap: 16px; }
-      .nav-logo-pill img { width: 132px; }
+      .nav-inner { height: 72px; gap: 16px; }
+      .nav-logo-pill { padding: 12px 0; }
+      .nav-logo-pill img { width: 100px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1936,7 +1937,7 @@
     @media (max-width: 480px) {
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-actions { flex-direction: column; align-items: flex-start; }
-      .nav-logo-pill img { width: 120px; }
+      .nav-logo-pill img { width: 90px; }
     }
   </style>
 </head>
