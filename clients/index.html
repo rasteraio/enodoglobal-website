@@ -107,13 +107,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
+      height: 92px;
+      gap: 32px;
     }
     .nav-logo-pill {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
+      padding: 6px 0;
     }
-    .nav-logo-pill img { width: 110px; height: auto; }
+    .nav-logo-pill img { width: 148px; height: auto; display: block; }
     .nav-links {
       display: flex;
       gap: 36px;
@@ -179,7 +182,8 @@
     /* ── HERO ── */
     #home {
       position: relative;
-      min-height: 92vh;
+      min-height: calc(100vh - 92px);
+      padding: 56px 0;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -294,24 +298,23 @@
     }
     .hero-dash-risk {
       position: relative;
-      padding-top: 22px;
-      margin: -2px 0 14px;
+      padding-top: 24px;
+      margin: 2px 0 16px;
     }
     .hero-dash-risk-bar {
       display: flex;
-      height: 6px;
+      height: 8px;
       border-radius: 999px;
       overflow: hidden;
     }
-    .hero-dash-risk-bar span { flex: 1; }
-    .hero-dash-risk-bar .stable   { background: linear-gradient(90deg, #4a8b6d 0%, #6fb18a 100%); }
-    .hero-dash-risk-bar .elevated { background: linear-gradient(90deg, #c9a070 0%, #e0b88a 100%); }
-    .hero-dash-risk-bar .high     { background: linear-gradient(90deg, #c98a4a 0%, #e0a070 100%); }
-    .hero-dash-risk-bar .critical { background: linear-gradient(90deg, #c97070 0%, #e08a8a 100%); }
+    .hero-dash-risk-bar .stable   { flex: 30; background: linear-gradient(90deg, #4a8b6d 0%, #6fb18a 100%); }
+    .hero-dash-risk-bar .elevated { flex: 30; background: linear-gradient(90deg, #c9a070 0%, #e0b88a 100%); }
+    .hero-dash-risk-bar .high     { flex: 20; background: linear-gradient(90deg, #c98a4a 0%, #e0a070 100%); }
+    .hero-dash-risk-bar .critical { flex: 20; background: linear-gradient(90deg, #c97070 0%, #e08a8a 100%); }
     .hero-dash-risk-scale {
       position: relative;
-      margin-top: 6px;
-      height: 14px;
+      margin-top: 8px;
+      height: 12px;
       font-size: 9px;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -322,6 +325,7 @@
       position: absolute;
       top: 0;
       transform: translateX(-50%);
+      white-space: nowrap;
     }
     .hero-dash-risk-marker {
       position: absolute;
@@ -340,7 +344,7 @@
       content: '';
       display: block;
       width: 1px;
-      height: 6px;
+      height: 7px;
       background: #e0b88a;
       margin: 4px auto 0;
     }
@@ -1912,6 +1916,8 @@
 
     @media (max-width: 768px) {
       section { padding: 72px 0; }
+      .nav-inner { height: 80px; gap: 16px; }
+      .nav-logo-pill img { width: 132px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1930,7 +1936,7 @@
     @media (max-width: 480px) {
       .industries-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-actions { flex-direction: column; align-items: flex-start; }
-      .nav-logo-pill img { width: 90px; }
+      .nav-logo-pill img { width: 120px; }
     }
   </style>
 </head>
