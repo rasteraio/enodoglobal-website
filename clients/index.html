@@ -31,7 +31,7 @@
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "intelligence@enodoglobal.com",
+      "email": "info@enodoglobal.com",
       "telephone": "+1-571-218-0956"
     }
   }
@@ -2579,37 +2579,41 @@
               <input id="cf-name" name="fullName" type="text" autocomplete="name" required />
             </div>
             <div class="form-field">
-              <label for="cf-org">Organization</label>
-              <input id="cf-org" name="organization" type="text" autocomplete="organization" required />
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-field">
+              <label for="cf-org">Organization</label>
+              <input id="cf-org" name="organization" type="text" autocomplete="organization" required />
+            </div>
+            <div class="form-field">
               <label for="cf-country">Country</label>
               <input id="cf-country" name="country" type="text" autocomplete="country-name" required />
             </div>
-            <div class="form-field">
-              <label for="cf-interest">Area of Interest</label>
-              <select id="cf-interest" name="areaOfInterest" required>
-                <option value="" disabled selected>Select…</option>
-                <optgroup label="Finance">
-                  <option value="Sovereign Wealth Fund Intelligence">Sovereign Wealth Fund Intelligence</option>
-                  <option value="Financial Institution Risk">Financial Institution Risk</option>
-                  <option value="Family Office Advisory">Family Office Advisory</option>
-                </optgroup>
-                <optgroup label="Government &amp; Public Sector">
-                  <option value="Government &amp; Defense">Government &amp; Defense</option>
-                  <option value="Geopolitical Risk">Geopolitical Risk</option>
-                </optgroup>
-                <optgroup label="Other Verticals">
-                  <option value="Political Campaigns">Political Campaigns</option>
-                  <option value="Marketing &amp; Communications">Marketing &amp; Communications</option>
-                  <option value="Extractives &amp; Energy">Extractives &amp; Energy</option>
-                  <option value="Insurance">Insurance</option>
-                </optgroup>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-interest">Area of Interest</label>
+            <select id="cf-interest" name="areaOfInterest" required>
+              <option value="" disabled selected>Select…</option>
+              <optgroup label="Finance">
+                <option value="Sovereign Wealth Fund Intelligence">Sovereign Wealth Fund Intelligence</option>
+                <option value="Financial Institution Risk">Financial Institution Risk</option>
+                <option value="Family Office Advisory">Family Office Advisory</option>
+              </optgroup>
+              <optgroup label="Government &amp; Public Sector">
+                <option value="Government &amp; Defense">Government &amp; Defense</option>
+                <option value="Geopolitical Risk">Geopolitical Risk</option>
+              </optgroup>
+              <optgroup label="Other Verticals">
+                <option value="Political Campaigns">Political Campaigns</option>
+                <option value="Marketing &amp; Communications">Marketing &amp; Communications</option>
+                <option value="Extractives &amp; Energy">Extractives &amp; Energy</option>
+                <option value="Insurance">Insurance</option>
+              </optgroup>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="form-field">
             <label for="cf-role">Role / Specific Use Case</label>
@@ -2627,7 +2631,7 @@
               </svg>
             </button>
             <div class="form-secondary-contact">
-              Or email <a href="mailto:intelligence@enodoglobal.com">intelligence@enodoglobal.com</a>
+              Or email <a href="mailto:info@enodoglobal.com">info@enodoglobal.com</a>
             </div>
           </div>
           <div id="briefing-form-status" class="form-status" role="status" aria-live="polite"></div>
@@ -2660,7 +2664,7 @@
         <div class="footer-contact">
           <h4>Contact</h4>
           <p>Fairfax, VA 22032</p>
-          <a href="mailto:intelligence@enodoglobal.com">intelligence@enodoglobal.com</a>
+          <a href="mailto:info@enodoglobal.com">info@enodoglobal.com</a>
           <br/>
           <a href="tel:+15712180956">(571) 218-0956</a>
         </div>
@@ -2704,6 +2708,7 @@
         const data = new FormData(briefingForm);
         const lines = [
           `Full Name: ${data.get('fullName')}`,
+          `Email: ${data.get('email')}`,
           `Organization: ${data.get('organization')}`,
           `Country: ${data.get('country')}`,
           `Area of Interest: ${data.get('areaOfInterest')}`,
@@ -2715,7 +2720,7 @@
         const subject = `Intelligence Briefing Request — ${data.get('organization')}`;
         const body = lines.join('\n');
         window.location.href =
-          'mailto:intelligence@enodoglobal.com'
+          'mailto:info@enodoglobal.com'
           + '?subject=' + encodeURIComponent(subject)
           + '&body=' + encodeURIComponent(body);
         briefingStatus.textContent = 'Opening your email client to send the briefing request…';
